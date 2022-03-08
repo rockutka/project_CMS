@@ -1,0 +1,51 @@
+   
+const months = [
+            'Января',
+            'Февраля',
+            'Марта',
+            'Апреля',
+            'Мая',
+            'Июня',
+            'Июля',
+            'Августа',
+            'Сентября',
+            'Октября',
+            'Ноября',
+            'Декабря'
+        ];
+
+
+const days = [
+            {name:'Воскресенье', number: 7},
+            {name:'Понедельник', number: 1},
+            {name: 'Вторник', number: 2},
+            {name: 'Среда', number: 3},
+            {name: 'Четверг', number: 4},
+            {name:'Пятница', number: 5},
+            {name: 'Суббота', number: 6}
+        ];
+
+
+
+
+ function getDayInfo(date) {
+
+        let dateArr = date.split(".");
+        let newDate = new Date();
+        newDate.setDate(1)
+        newDate.setMonth(dateArr[1]-1)
+        newDate.setFullYear(dateArr[2])
+
+     
+        const offset = days[newDate.getDay()].number-1
+
+        newDate.setDate(dateArr[0])
+
+        let dayWeek = Math.ceil((newDate.getDate() + offset)/7)
+        let day = days[newDate.getDay()].name
+        let month = months[newDate.getMonth()]
+        let year = newDate.getFullYear()
+
+        return `${day}, ${dayWeek} неделя ${month} ${year} года`;
+
+    }
